@@ -1,0 +1,11 @@
+import bs4
+import requests
+from bs4 import BeautifulSoup
+
+def parsePrice():
+    page = requests.get("https://blackriver-shop.com/fingerboards/berlinwood-pro-sets/berlinwood-envoyage-heart-hunter-set/")
+    soup = BeautifulSoup(page.content,"html.parser")
+    price  = soup.find_all('div',{'class':'product--price price--default'})[0].find('span').text
+    return price
+while True:
+    print('the current price: '+str(parsePrice())) 
